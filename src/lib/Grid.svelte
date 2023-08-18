@@ -44,7 +44,7 @@
           <div class="inactive" />
         {/if}
         {#if typeof day === "number"}
-          <button on:click={onClick(day)}>{day}</button>
+          <button style="font-size: {size / 2.25}px;" on:click={onClick(day)}>{day}</button>
         {/if}
       </div>
     {/each}

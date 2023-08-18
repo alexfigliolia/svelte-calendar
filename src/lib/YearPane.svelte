@@ -6,8 +6,7 @@
   import BackButton from "./BackButton.svelte";
   import YearMonthButton from "./YearMonthButton.svelte";
 
-  const { onSelect, buttonBG, buttonBGActive, buttonLabelColor, buttonLabelColorActive } =
-    getContext<Options>("options");
+  const { onSelect } = getContext<Options>("options");
 
   const years = derived(activeYear, y => {
     const partition = new Array(50).fill("");
@@ -18,10 +17,6 @@
 
   class UIController {
     static containerRef: HTMLDivElement;
-
-    static onClickBack = () => {
-      activePane.set("calendar");
-    };
 
     static onSelectYear = (year: number) => {
       return () => {

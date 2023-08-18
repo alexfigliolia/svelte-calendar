@@ -4,7 +4,7 @@
   import type { Options } from "./types";
   import { activePane } from "./Stores";
 
-  const { buttonLabelColor } = getContext<Options>("options");
+  const { size, buttonLabelColor } = getContext<Options>("options");
 
   const onClick = () => {
     activePane.set("calendar");
@@ -12,7 +12,11 @@
 </script>
 
 <div class="container">
-  <button on:click={onClick} class="back" style="color: {buttonLabelColor};">
+  <button
+    on:click={onClick}
+    class="back"
+    style="color: {buttonLabelColor}; font-size: {size / 1.9}px;"
+  >
     <div class="icon">
       <Back color={buttonLabelColor} />
     </div>

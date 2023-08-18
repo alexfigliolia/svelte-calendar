@@ -5,7 +5,7 @@
   import { getContext } from "svelte";
   import type { Options } from "./types";
 
-  const { buttonBGActive, buttonLabelColorActive } = getContext<Options>("options");
+  const { size, buttonBGActive, buttonLabelColorActive } = getContext<Options>("options");
 
   const month = derived(activeMonth, v => Dates.months[v]);
 
@@ -24,14 +24,16 @@
   <button
     class="action month"
     on:click={UIController.onClickMonth}
-    style="color: {buttonLabelColorActive}; background: {buttonBGActive};"
+    style="color: {buttonLabelColorActive}; background: {buttonBGActive}; font-size: {size /
+      1.8}px;"
   >
     {$month}
   </button>
   <button
     class="action year"
     on:click={UIController.onClickYear}
-    style="color: {buttonLabelColorActive}; background: {buttonBGActive};">{$activeYear}</button
+    style="color: {buttonLabelColorActive}; background: {buttonBGActive}; font-size: {size /
+      1.9}px;">{$activeYear}</button
   >
 </div>
 

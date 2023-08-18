@@ -6,12 +6,13 @@
   export let active: boolean = false;
   export let onClick: (e: Event) => void;
 
-  const { buttonBG, buttonBGActive, buttonLabelColor, buttonLabelColorActive } =
+  const { size, buttonBG, buttonBGActive, buttonLabelColor, buttonLabelColorActive } =
     getContext<Options>("options");
 </script>
 
 <button
   style="
+  font-size: {size / 2.1}px;
 	background-color: {active ? buttonBGActive : buttonBG};
 	color: {active ? buttonLabelColorActive : buttonLabelColor};"
   class:active

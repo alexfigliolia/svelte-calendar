@@ -7,20 +7,15 @@
   import BackButton from "./BackButton.svelte";
   import YearMonthButton from "./YearMonthButton.svelte";
 
-  const { onSelect, buttonBG, buttonBGActive, buttonLabelColor, buttonLabelColorActive } =
-    getContext<Options>("options");
+  const { onSelect } = getContext<Options>("options");
 
   class UIController {
-    static onClickBack = () => {
-      activePane.set("calendar");
-    };
-
     static onSelectMonth = (index: number) => {
       return () => {
         activeMonth.set(index);
         activeDay.set(1);
         onSelect(get(activeYear), index, 1);
-        this.onClickBack();
+        activePane.set("calendar");
       };
     };
   }

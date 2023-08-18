@@ -9,7 +9,12 @@
 </script>
 
 {#each Dates.days as day}
-  <div class="day" style="{style} min-height: {size}px; min-width: {size}px">{day.slice(0, 1)}</div>
+  <div
+    class="day"
+    style="{style} min-height: {size}px; min-width: {size}px; font-size: {size / 3}px;"
+  >
+    {day.slice(0, 1)}
+  </div>
 {/each}
 
 <style lang="scss">

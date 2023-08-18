@@ -2,8 +2,10 @@
   import { derived } from "svelte/store";
   import { activeMonth, activePane, activeYear } from "./Stores";
   import { Dates } from "./Dates";
+  import { getContext } from "svelte";
+  import type { Options } from "./types";
 
-  export let color = "#000";
+  const { buttonBGActive, buttonLabelColorActive } = getContext<Options>("options");
 
   const month = derived(activeMonth, v => Dates.months[v]);
 
@@ -19,10 +21,18 @@
 </script>
 
 <div class="header">
-  <button on:click={UIController.onClickMonth} class="action month" style="color: {color};">
+  <button
+    class="action month"
+    on:click={UIController.onClickMonth}
+    style="color: {buttonLabelColorActive}; background: {buttonBGActive};"
+  >
     {$month}
   </button>
-  <button on:click={UIController.onClickYear} class="action year">{$activeYear}</button>
+  <button
+    class="action year"
+    on:click={UIController.onClickYear}
+    style="color: {buttonLabelColorActive}; background: {buttonBGActive};">{$activeYear}</button
+  >
 </div>
 
 <style lang="scss">
@@ -36,12 +46,13 @@
     & > .action {
       outline: none;
       border: none;
+      font-weight: 500;
       cursor: pointer;
       background-color: #e1e1e1;
       border-radius: 2.5px;
       &.month {
         font-size: 1em;
-        padding: 7.5px 12.5px;
+        padding: 7.5px 15px;
       }
       &.year {
         padding: 5px 10px;

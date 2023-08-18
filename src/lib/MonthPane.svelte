@@ -1,10 +1,10 @@
 <script lang="ts">
   import { get } from "svelte/store";
-  import Back from "./Back.svelte";
   import { Dates } from "./Dates";
   import { activeDay, activeMonth, activePane, activeYear } from "./Stores";
   import type { Options } from "./types";
   import { getContext } from "svelte";
+  import BackButton from "./BackButton.svelte";
 
   const { onSelect, buttonBG, buttonBGActive, buttonLabelColor, buttonLabelColorActive } =
     getContext<Options>("options");
@@ -26,22 +26,15 @@
 </script>
 
 <div class="months">
-  <div class="header">
-    <button on:click={UIController.onClickBack} class="back">
-      <div class="icon">
-        <Back />
-      </div>
-      <div>Back</div>
-    </button>
-  </div>
+  <BackButton />
   <div class="buttons">
     {#each Dates.months as month, index}
       <button
         style="
-          background-color: {index === $activeMonth ? buttonBGActive : buttonBG};
+          background: {index === $activeMonth ? buttonBGActive : buttonBG};
           color: {index === $activeMonth ? buttonLabelColorActive : buttonLabelColor};"
         on:click={UIController.onSelectMonth(index)}
-        >{month}
+        >{month.slice(0, 3)}
       </button>
     {/each}
   </div>
@@ -54,29 +47,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    & > .header {
-      width: 100%;
-      border-bottom: 1px solid #e7e7e7;
-      & > .back {
-        width: auto;
-        padding: 7.5px 12px;
-        display: flex;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #eeeeee;
-        border: none;
-        cursor: pointer;
-        border-radius: 2.5px;
-        font-size: 1em;
-        margin-bottom: 10px;
-        & > .icon {
-          width: 17.5px;
-          height: 17.5px;
-          margin-right: 5px;
-        }
-      }
-    }
     & > .buttons {
       width: 100%;
       display: flex;
@@ -91,6 +61,8 @@
         cursor: pointer;
         font-size: 0.8em;
         border-radius: 2.5px;
+        font-weight: 300;
+        text-transform: uppercase;
       }
     }
   }

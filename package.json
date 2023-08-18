@@ -8,8 +8,10 @@
 	"main": "package/index.js",
 	"types": "package/index.d.ts",
 	"exports": {
-		"types": "./package/index.d.ts",
-		"svelte": "./package/index.js"
+		".": {
+			"types": "./package/index.d.ts",
+			"svelte": "./package/index.js"
+		}
 	},
 	"scripts": {
 		"dev": "vite dev",

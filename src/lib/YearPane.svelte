@@ -1,6 +1,6 @@
 <script lang="ts">
   import { derived, get } from "svelte/store";
-  import { activeDay, activeYear, activePane } from "./Stores";
+  import { activeDay, activeYear, activePane, activeMonth } from "./Stores";
   import { getContext, onMount } from "svelte";
   import type { Options } from "./types";
   import BackButton from "./BackButton.svelte";
@@ -22,7 +22,7 @@
       return () => {
         activeYear.set(year);
         activeDay.set(1);
-        onSelect(year, get(activeYear), 1);
+        onSelect(year, get(activeMonth), 1);
         activePane.set("calendar");
         this.setScrollPosition();
       };

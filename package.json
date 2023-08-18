@@ -1,5 +1,5 @@
 {
-	"name": "svelte-calendar",
+	"name": "@figliolia/svelte-calendar",
 	"version": "0.0.1",
 	"files": [
 		"package",
@@ -16,7 +16,6 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "rm -rf package && svelte-kit sync && npx svelte-package",
-		"prepublishOnly": "echo 'Did you mean to publish `./package/`, instead of `./`?' && exit 1",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --plugin-search-dir . --write .",

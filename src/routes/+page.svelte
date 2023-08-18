@@ -10,8 +10,4 @@
   onSelect={(year, month, day) => {}}
 />
 
-<style lang="scss">
-  .gray {
-    color: rgb(88, 88, 88);
-  }
-</style>
+<style lang="scss"></style>

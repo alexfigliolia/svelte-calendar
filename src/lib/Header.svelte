@@ -32,8 +32,8 @@
   <button
     class="action year"
     on:click={UIController.onClickYear}
-    style="color: {buttonLabelColorActive}; background: {buttonBGActive}; font-size: {size /
-      1.9}px;">{$activeYear}</button
+    style="color: {buttonLabelColorActive}; background: {buttonBGActive}; font-size: {size / 2}px;"
+    >{$activeYear}</button
   >
 </div>
 
@@ -57,7 +57,7 @@
         padding: 7.5px 15px;
       }
       &.year {
-        padding: 5px 10px;
+        padding: 5px 12.5px;
         font-size: 0.9em;
       }
     }

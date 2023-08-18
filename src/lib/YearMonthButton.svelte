@@ -3,7 +3,7 @@
   import type { Options } from "./types";
 
   export let text: string | number;
-  export let active: boolean = false;
+  export let active = false;
   export let onClick: (e: Event) => void;
 
   const { size, buttonBG, buttonBGActive, buttonLabelColor, buttonLabelColorActive } =

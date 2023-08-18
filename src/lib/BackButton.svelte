@@ -17,7 +17,7 @@
     class="back"
     style="color: {buttonLabelColor}; font-size: {size / 1.9}px;"
   >
-    <div class="icon">
+    <div class="icon" style="height: {size / 2}px; width: {size / 2}px">
       <Back color={buttonLabelColor} />
     </div>
     <div>Back</div>

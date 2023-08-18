@@ -4,6 +4,7 @@
   import { getContext, onMount } from "svelte";
   import type { Options } from "./types";
   import BackButton from "./BackButton.svelte";
+  import YearMonthButton from "./YearMonthButton.svelte";
 
   const { onSelect, buttonBG, buttonBGActive, buttonLabelColor, buttonLabelColorActive } =
     getContext<Options>("options");
@@ -55,15 +56,11 @@
   <BackButton />
   <div class="buttons" bind:this={UIController.containerRef}>
     {#each $years as year}
-      <button
-        style="
-          background-color: {year === $activeYear ? buttonBGActive : buttonBG};
-          color: {year === $activeYear ? buttonLabelColorActive : buttonLabelColor};"
-        class:active={year === $activeYear}
-        on:click={UIController.onSelectYear(year)}
-      >
-        {year}
-      </button>
+      <YearMonthButton
+        text={year}
+        active={year === $activeYear}
+        onClick={UIController.onSelectYear(year)}
+      />
     {/each}
   </div>
 </div>
@@ -85,17 +82,6 @@
       overflow-y: scroll;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
-      & > button {
-        width: 33.333%;
-        outline: none;
-        border: none;
-        background-color: transparent;
-        padding: 10px 0;
-        cursor: pointer;
-        font-size: 0.9em;
-        border-radius: 2.5px;
-        font-weight: 400;
-      }
     }
   }
 </style>

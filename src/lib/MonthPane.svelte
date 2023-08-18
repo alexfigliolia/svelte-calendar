@@ -5,6 +5,7 @@
   import type { Options } from "./types";
   import { getContext } from "svelte";
   import BackButton from "./BackButton.svelte";
+  import YearMonthButton from "./YearMonthButton.svelte";
 
   const { onSelect, buttonBG, buttonBGActive, buttonLabelColor, buttonLabelColorActive } =
     getContext<Options>("options");
@@ -29,13 +30,11 @@
   <BackButton />
   <div class="buttons">
     {#each Dates.months as month, index}
-      <button
-        style="
-          background: {index === $activeMonth ? buttonBGActive : buttonBG};
-          color: {index === $activeMonth ? buttonLabelColorActive : buttonLabelColor};"
-        on:click={UIController.onSelectMonth(index)}
-        >{month.slice(0, 3)}
-      </button>
+      <YearMonthButton
+        text={month.slice(0, 3)}
+        active={index === $activeMonth}
+        onClick={UIController.onSelectMonth(index)}
+      />
     {/each}
   </div>
 </div>
@@ -52,18 +51,6 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      & > button {
-        width: 33.333%;
-        outline: none;
-        border: none;
-        background-color: transparent;
-        padding: 10px 0;
-        cursor: pointer;
-        font-size: 0.8em;
-        border-radius: 2.5px;
-        font-weight: 300;
-        text-transform: uppercase;
-      }
     }
   }
 </style>

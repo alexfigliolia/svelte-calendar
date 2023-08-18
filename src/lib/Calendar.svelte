@@ -6,7 +6,7 @@
   import YearPane from "./YearPane.svelte";
   import type { SelectFN } from "./types";
 
-  export let size = 30;
+  export let tileSize = 30;
   export let onSelect: SelectFN;
   export let buttonBG = "#fff";
   export let buttonBGActive = "#000";
@@ -14,16 +14,16 @@
   export let buttonLabelColorActive = "#fff";
 
   $: setContext("options", {
-    size,
     onSelect,
     buttonBG,
+    size: tileSize,
     buttonBGActive,
     buttonLabelColor,
     buttonLabelColorActive,
   });
 </script>
 
-<div class="calendar" style="width: {size * 7}px;">
+<div class="calendar" style="width: {tileSize * 7}px;">
   <div class="pane calendar" class:active={$activePane === "calendar"}>
     <CalendarPane />
   </div>

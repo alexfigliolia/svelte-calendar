@@ -1,38 +1,55 @@
-# create-svelte
+# Svelte Calendar
+A basic date picker for svelte applications
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
+### Installation
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
+npm i -S @figliolia/svelte-calendar
+# or
+yarn add @figliolia/svelte-calendar
+```
+## Usage
 
-# create a new project in my-app
-npm create svelte@latest my-app
+```html
+<script lang="ts">
+  import { Calendar } from "@figliolia/svelte-calendar";
+
+  const onSelect = (date: string) => {
+    console.log('Selection', date); // ISO time stamp
+  }
+</script>
+
+<Calendar
+  {onSelect}
+  tileSize={30}
+  buttonBG="#fff"
+  buttonBGActive="#000"
+  buttonLabelColor="#000"
+  buttonLabelColorActive="#fff" />
 ```
 
-## Developing
+### API
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+ `onSelect: (date: string) => void`
 
-```bash
-npm run dev
+ A callback to run each time a date is selected
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+ `tileSize: number = 30`
 
-## Building
+ A size in pixels to render each date on the calendar. The size of the
+ calendar component is equal to `7 * tileSize` 
 
-To create a production version of your app:
+ `buttonBG: string = "#fff"`
 
-```bash
-npm run build
-```
+ A color string with used to style **inactive** button backgrounds
 
-You can preview the production build with `npm run preview`.
+`buttonBGActive: string = "#000"`
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+ A color string with used to style **active** button backgrounds
+
+`buttonLabelColor: string = "#000"`
+
+ A color string with used to style **inactive** button text
+
+`buttonLabelColorActive: string = "#fff"`
+
+ A color string with used to style **active** button text

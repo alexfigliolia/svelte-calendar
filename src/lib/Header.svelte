@@ -5,11 +5,31 @@
   import { getContext } from "svelte";
   import type { Options } from "./types";
 
-  const { size, buttonBGActive, buttonLabelColorActive } = getContext<Options>("options");
+  const { size, buttonBGActive, buttonLabelColor, buttonLabelColorActive } =
+    getContext<Options>("options");
 
   const month = derived(activeMonth, v => Dates.months[v]);
 
+  let yearFocused = false;
+  let monthFocused = false;
+
   class UIController {
+    static onFocusMonth = () => {
+      monthFocused = true;
+    };
+
+    static onFocusYear = () => {
+      yearFocused = true;
+    };
+
+    static onBlurMonth = () => {
+      monthFocused = false;
+    };
+
+    static onBlurYear = () => {
+      yearFocused = false;
+    };
+
     static onClickMonth = () => {
       activePane.set("months");
     };
@@ -23,17 +43,27 @@
 <div class="header">
   <button
     class="action month"
+    on:blur={UIController.onBlurMonth}
+    on:focus={UIController.onFocusMonth}
     on:click={UIController.onClickMonth}
-    style="color: {buttonLabelColorActive}; background: {buttonBGActive}; font-size: {size /
-      1.8}px;"
+    style="color: {monthFocused
+      ? buttonLabelColor
+      : buttonLabelColorActive}; background: {monthFocused
+      ? 'lightgray'
+      : buttonBGActive}; font-size: {size / 1.8}px;"
   >
     {$month}
   </button>
   <button
     class="action year"
+    on:blur={UIController.onBlurYear}
+    on:focus={UIController.onFocusYear}
     on:click={UIController.onClickYear}
-    style="color: {buttonLabelColorActive}; background: {buttonBGActive}; font-size: {size / 2}px;"
-    >{$activeYear}</button
+    style="color: {yearFocused
+      ? buttonLabelColor
+      : buttonLabelColorActive}; background: {yearFocused
+      ? 'lightgray'
+      : buttonBGActive}; font-size: {size / 2}px;">{$activeYear}</button
   >
 </div>
 
@@ -46,12 +76,11 @@
     align-items: center;
     margin-bottom: 10px;
     & > .action {
-      outline: none;
       border: none;
       font-weight: 500;
       cursor: pointer;
-      background-color: #e1e1e1;
       border-radius: 2.5px;
+      outline: none;
       &.month {
         font-size: 1em;
         padding: 7.5px 15px;

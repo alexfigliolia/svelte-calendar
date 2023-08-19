@@ -4,18 +4,35 @@
   import type { Options } from "./types";
   import { activePane } from "./Stores";
 
-  const { size, buttonLabelColor } = getContext<Options>("options");
+  const { size, buttonLabelColor, buttonBGActive } = getContext<Options>("options");
 
-  const onClick = () => {
-    activePane.set("calendar");
-  };
+  let focused = false;
+
+  class UIController {
+    static onFocus = () => {
+      focused = true;
+    };
+
+    static onBlur = () => {
+      focused = false;
+    };
+
+    static onClick = () => {
+      activePane.set("calendar");
+    };
+  }
 </script>
 
 <div class="container">
   <button
-    on:click={onClick}
     class="back"
-    style="color: {buttonLabelColor}; font-size: {size / 1.9}px;"
+    on:blur={UIController.onBlur}
+    on:click={UIController.onClick}
+    on:focus={UIController.onFocus}
+    style="
+      color: {buttonLabelColor}; 
+      font-size: {size / 1.9}px;
+      border: 2px solid {focused ? buttonBGActive : 'transparent'};"
   >
     <div class="icon" style="height: {size / 2}px; width: {size / 2}px">
       <Back color={buttonLabelColor} />
@@ -30,8 +47,9 @@
     border-bottom: 1px solid #e7e7e7;
     & > .back {
       width: auto;
+      outline: none;
+      box-sizing: border-box;
       padding: 7.5px 12px;
-      display: flex;
       display: flex;
       justify-content: center;
       align-items: center;

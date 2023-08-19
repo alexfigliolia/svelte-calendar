@@ -5,6 +5,7 @@
   import { Dates } from "./Dates";
   import type { Options } from "./types";
   import { getContext } from "svelte";
+  import DateButton from "./DateButton.svelte";
 
   const { size, onSelect, buttonBG, buttonBGActive, buttonLabelColor, buttonLabelColorActive } =
     getContext<Options>("options");
@@ -44,7 +45,7 @@
           <div class="inactive" />
         {/if}
         {#if typeof day === "number"}
-          <button style="font-size: {size / 2.25}px;" on:click={onClick(day)}>{day}</button>
+          <DateButton {day} onClick={onClick(day)} />
         {/if}
       </div>
     {/each}
@@ -65,17 +66,6 @@
       background-color: #fff;
       border-radius: 50%;
       overflow: hidden;
-      & > button {
-        color: inherit;
-        height: 100%;
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        outline: none;
-        border: none;
-        cursor: pointer;
-        background-color: transparent;
-      }
     }
   }
 </style>
